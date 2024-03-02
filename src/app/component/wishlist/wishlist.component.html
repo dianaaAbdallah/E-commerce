@@ -1,0 +1,36 @@
+<div
+ class="container" *ngIf="wishList.length>0;else loading">
+ 
+ <h2 class="text-center">WishList</h2>
+
+<div class="row gy-4 justify-content-center">
+    <div class="col-md-3 m-4" *ngFor="let product of wishList | slice : 0 : 18 ">
+      
+        <div class="product  p-1 border position-relative">
+            <i *ngIf="wishListData.includes($any(product._id))" class="fa-solid fa-heart heart " (click)="removeFav(product._id)"></i>
+
+            <div [routerLink]="['/productDetails',product._id]">
+
+                <img [src]="product.imageCover" class="w-100" [alt]="product.title"/>
+        
+        <p class="text-main">{{product.category.name|sale}}</p>
+      <div class="d-flex justify-content-between">
+        <span>{{product.price|currency:'EGP'}}</span>
+       <p class="mb-0">
+        <i [class.rating-color]="product.ratingsAverage>num" *ngFor="let num of [1,2,3,4,5]" class="fa-solid fa-star  start"></i>
+        <span class="text-muted">{{product.ratingsAverage}}</span>
+   </p> </div>  </div>
+      <button class="btn bg-main w-100 text-light" (click)="addToMyCart(product._id,addBtn)" #addBtn>Add To cart</button>
+            </div>
+        
+    </div>
+</div>
+
+
+</div>
+<ng-template #loading>
+    <div class="vh-100 d-flex justify-content-center align-items-center">
+        <i class="fa-solid fa-spinner fa-spin text-main fa-5x"></i>
+
+    </div>
+</ng-template>

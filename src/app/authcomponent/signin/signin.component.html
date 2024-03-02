@@ -1,0 +1,76 @@
+<section>
+  <div class="container my-5">
+    <h1 class="text-main">Login Form</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="loginsubmit(loginForm)">
+      <div class="row">
+        <div class="col-md-8 m-auto shadow p-5 my-3">
+          <div class="row gy-4">
+            <div class="col-md-12">
+              <label for="userEmail"> Email </label>
+              <input
+                type="text"
+                id="userEmail"
+                formControlName="email"
+                class="form-control"
+              />
+
+              <div
+                *ngIf="
+                  loginForm.get('email')?.errors &&
+                  loginForm.get('email')?.touched
+                "
+              >
+                <p
+                  class="text-danger"
+                  *ngIf="loginForm.get('email')?.getError('required')"
+                >
+                  This is required field
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="loginForm.get('email')?.getError('email')"
+                >
+                  enter avalid Email
+                </p>
+              </div>
+              <label class="fw-bold" for="userPassword"> password </label>
+              <input
+                type="password"
+                formControlName="password"
+                id="userPassword"
+                class="form-control"
+              />
+
+              <div
+                *ngIf="
+                  loginForm.get('password')?.errors &&
+                  loginForm.get('password')?.touched
+                "
+              >
+                <p
+                  class="text-danger"
+                  *ngIf="loginForm.get('password')?.getError('required')"
+                >
+                  This is required field
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="loginForm.get('password')?.getError('pattern')"
+                >
+                  enter avalid password
+                </p>
+              </div>
+            </div>
+            <div>
+              <button [disabled]="loginForm.invalid" class="btn bg-main float-end text-light" type="submit" >
+                  <i class="fa fa-spinner fa-spin" *ngIf="isLoading"></i>
+                  
+                 <span *ngIf="!isLoading">LogIn</span></button>
+                 <a class="text-main" routerLink="/forgetPassword">Reset Password....</a>
+          </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

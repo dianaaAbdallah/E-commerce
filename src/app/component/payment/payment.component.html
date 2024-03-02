@@ -1,0 +1,23 @@
+<div class="container">
+    <form [formGroup]="checkout" (ngSubmit)="payment(checkout)">
+       <div class="row">
+        <div class="col-md-8 m-auto my-5">
+            <div class="layerCart bg-light p-5">
+<div class="my-2">
+    <label>details</label>
+    <input formControlName="details" type="text" class="form-control"/>
+</div>
+<div class="my-2">
+    <label>phone</label>
+    <input type="tel" formControlName="phone" class="form-control"/>
+</div>
+<div class="my-2">
+    <label>city</label>
+    <input type="text" formControlName="city" class="form-control"/>
+</div>
+<button type="submit" class="btn bg-main text-light">pay</button>
+            </div>
+        </div>
+       </div> 
+    </form>
+</div>

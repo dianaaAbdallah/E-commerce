@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row my-5">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3 class="fw-bold">Shopping Cart</h3>
+        <button class="btn btn-outline-danger btn-sm" (click)="clear()">Clear Cart</button>
+      </div> 
+
+       <div class="text-end"> <button class="btn text-light bg-main" routerLink="/checkOut">online payment</button></div>
+        <div class="col-md-10 m-auto my-5  bg-light shadow p-5" *ngIf="cartItem!=null;else NoData ">
+<h4><span class="text-main fw-bold">Total Price: </span>{{cartItem?.totalCartPrice}}</h4>
+<div *ngFor="let product of cartItem?.products" class="row border-bottom py-2">
+
+<div class="col-md-2">
+    <img [src]="product.product.imageCover" class="w-100" alert="">
+</div>
+<div class="col-md-10 d-flex justify-content-between align-items-center">
+<div>
+    <p>{{product.product.title}}</p>
+    <p>{{product.price}}</p>
+    <button class="btn btn-outline-danger" (click)="deleteMycart(product.product._id)"><i class="fa-regular fa-trash-can"></i>Remove</button>
+</div>
+<div>
+    <button class="btn btn-outline-success" (click)="updateMycart(product.count+1,product.product._id)">+</button>
+<span class="mx-2">{{product.count}}</span>
+<button class="btn btn-outline-success" (click)="updateMycart(product.count-1,product.product._id)">-</button>
+</div>
+</div>
+</div>
+
+
+        </div>
+    </div>
+    <ng-template #NoData>
+        Your Cart empty
+    </ng-template>
+</div>

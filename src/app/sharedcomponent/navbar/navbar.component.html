@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" #navBar>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><i class="fa-solid text-success fa-cart-shopping"></i><span class="mx-3 fw-bolder">FreshCart</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mt-2 mt-lg-0" *ngIf="isloggedin">
+         
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/home" routerLinkActive="text-main">home</a>
+              </li>
+              
+          
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/product" routerLinkActive="text-main">product</a>
+          </li>
+            
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/category" routerLinkActive="text-main">category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/brands" routerLinkActive="text-main">brands</a>
+          </li>
+       
+         
+         
+      
+       
+       
+        </ul>
+        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+         
+       
+                
+      
+        <ng-template [ngIf]="!isloggedin">
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="/signup" routerLinkActive="text-main">register</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="/singin" routerLinkActive="text-main">signin</a>
+          </li>
+     
+        </ng-template>
+        <li class="nav-item">
+          <a class="nav-link position-relative mx-1" routerLink="/wishList" *ngIf="isloggedin" routerLinkActive="text-main">
+
+     <i class="fas fa-heart text-danger "><span class="badge bg-danger position-absolute top-0 bottom-50">{{wishListNumber}}</span></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link position-relative mx-4" routerLink="/mycart" *ngIf="isloggedin" routerLinkActive="text-main">
+
+     <i class="fas fa-cart-shopping text-main "><span class="badge bg-main position-absolute top-0 bottom-50">{{cartNumber}}</span></i>
+          </a>
+        </li>
+          <li class="nav-item " *ngIf="isloggedin">
+            <button class="nav-link" (click)="signOut()" >signout</button>
+          </li>
+          <li class="nav-item d-flex justify-content-center align-items-center">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook mx-2"></i>
+            <i class="fab  fa-youtube mx-2"></i>
+            <i class="fab fa-tiktok mx-2"></i>
+            <i class="fab fa-linkedin mx-2"></i>
+              
+            <i class="fab fa-twitter me-2"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

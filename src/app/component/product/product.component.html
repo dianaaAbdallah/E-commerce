@@ -1,0 +1,50 @@
+<div
+ class="container" *ngIf="productList.length>0">
+ <h2>All Products</h2>
+<input type="text" placeholder="search" class="w-50 m-auto form-control my-3" [(ngModel)]="searchValue" />
+<div class="row gy-4">
+    <div class="col-md-3" *ngFor="let product of productList| paginate: { id: 'productPaginate',
+    itemsPerPage: pageSize,currentPage: currentPage,totalItems: total } |search:searchValue">
+      <div class="product  p-1 border position-relative">
+        <i class="fa-regular fa-heart heart" (click)="addToMyWishList(product._id)"></i>
+        <div [routerLink]="['/productDetails',product._id]">
+
+            <img [src]="product.imageCover" class="w-100" [alt]="product.title"/>
+    
+    <p class="text-main">{{product.category.name|sale}}</p>
+  <div class="d-flex justify-content-between">
+    <span>{{product.price|currency:'EGP'}}</span>
+   <p class="mb-0">
+    <i [class.rating-color]="product.ratingsAverage>num" *ngFor="let num of [1,2,3,4,5]" class="fa-solid fa-star  start"></i>
+    <span class="text-muted">{{product.ratingsAverage}}</span>
+</p> </div>  </div>
+  <button class="btn bg-main w-100 text-light" (click)="addToMyCart(product._id)" #addBtn>Add To cart</button>
+        </div>
+    
+        
+    </div>
+</div>
+
+
+</div>
+<!-- <ng-template #loading>
+    <div class="vh-100 d-flex justify-content-center align-items-center">
+        <i class="fa-solid fa-spinner fa-spin text-main fa-5x"></i>
+
+    </div>
+</ng-template> -->
+<div class="d-flex justify-content-center mt-4">
+    <pagination-controls  id="productPaginate"
+                      (pageChange)="pageChanged($event)"
+                      (pageBoundsCorrection)="pageChanged($event)"
+                     [maxSize]="9"
+                      [directionLinks]="true"
+                      [autoHide]="true"
+                      [responsive]="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</div>

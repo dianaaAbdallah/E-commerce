@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'finalProject';
+  goToUp():void{
+    window.scrollTo(0,0)
+  }
 }
